@@ -4,31 +4,51 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+#include <stdio.h>
+
+void movimentoTorre(int numeroCasas) {
+  if (numeroCasas > 0){
+    printf("Direita \n");
+
+    movimentoTorre(--numeroCasas);
+  }
+}
+
+void movimentoRainha(int numeroCasas) {
+  if (numeroCasas > 0){
+    printf("Esquerda \n");
+
+    movimentoRainha(--numeroCasas);
+  }
+}
+
+void movimentoBispo(int numeroCasas) {
+
+  if(numeroCasas > 0){ 
+    for (int i = 0; i < 1; i++) {
+      printf("Cima, ");
+      for (int j = 0; j < 1 ; j++) {
+        printf("Direita\n");
+      }
+      movimentoBispo(numeroCasas - 1);
+    }
+  }
+}
+
 int main() {
 
-  int torre, bispo = 0, rainha = 0, cavalo = 1;
+  int torre = 5, rainha = 8, bispo = 5, cavalo = 1;
 
   printf("Movimentação torre.\n");
-  for (torre = 0; torre < 5; torre++){
-    printf("Direta \n");
-  }
+  movimentoTorre(torre);
   printf("----------\n");
 
-  printf("Movimentação Rainha.\n");
-  while (rainha < 8)
-  {
-    printf("Esquerda\n");
-    rainha++;
-  }
+  printf("Movimentação rainha.\n");
+  movimentoRainha(rainha);
   printf("----------\n");
 
-  printf("Movimentação Bispo.\n");
-  do
-  { 
-
-    printf("Cima, Direita\n");
-    bispo++;
-  } while (bispo < 5);
+  printf("Movimentação bispo.\n");
+  movimentoBispo(bispo);
   printf("----------\n");
 
   printf("Movimentação Cavalo.\n");
@@ -36,9 +56,9 @@ int main() {
   {
     for (int i = 0; i < 2; i++)
     {
-      printf("Baixo\n");
+      printf("Cima, ");
     }
-    printf("Esquerda\n");
+    printf("Direita\n");
     
   }
   printf("----------\n");
